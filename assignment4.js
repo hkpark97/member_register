@@ -27,6 +27,7 @@ function validateForm() {
     var pass = true;
     var postalCodeRegex = /^([A-Z][0-9][A-Z])\s*([0-9][A-Z][0-9])$/.test(code.value.toUpperCase());
     var emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/.test(email.value);
+    var pwdRegex=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(psw.value);
 
     if(fname.value == "") 
     {
@@ -90,7 +91,7 @@ function validateForm() {
         if (age.value < 18) 
         {
         document.getElementsByClassName("errStar")[6].innerHTML = "*";
-        document.getElementsByClassName("errDt")[6].innerHTML = "Not eligible.";
+        document.getElementsByClassName("errDt")[6].innerHTML = "Must be at least 18yrs.";
         pass = false;
         }
     }
@@ -103,10 +104,10 @@ function validateForm() {
     }
 
     else {
-        if(psw.value.length < 6) 
+        if(pwdRegex == false) 
         {
         document.getElementsByClassName("errStar")[7].innerHTML = "*";
-        document.getElementsByClassName("errDt")[7].innerHTML = "Enter at least 6 characters.";
+        document.getElementsByClassName("errDt")[7].innerHTML = "1 digit, 1 upper-case, 6 character.";
         pass = false;
         }
     }
